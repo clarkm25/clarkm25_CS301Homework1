@@ -1,12 +1,11 @@
 package com.example.cs301homework1;
 
 /**
- * DrawClassModel
+ * Model for the DrawClass. This class holds information regarding which object on the
+ * DrawClass surface view is being modified as well as the RGB values for each object.
  *
  * @author Max Clark
- *
- * Model for the DrawClass. This class holds information regarding which object on the DrawClass
- * surface view is being modified as well as the RGB values for each object.
+ * @version 10 February 2022
  */
 public class DrawClassModel {
     //App 1
@@ -39,11 +38,6 @@ public class DrawClassModel {
     public int a6Red = 200;
     public int a6Green = 200;
     public int a6Blue = 200;
-    //Phone Frame
-    public boolean pFrame = false;
-    public int pFrameRed = 100;
-    public int pFrameGreen = 100;
-    public int pFrameBlue = 100;
     //Phone Background
     public boolean pBackground = false;
     public int pBackgroundRed = 0;

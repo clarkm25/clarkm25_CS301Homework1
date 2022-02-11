@@ -5,16 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
-import android.view.View;
 
 /**
- * DrawClass
+ * Class that creates a surface view and draws a series of objects for user interaction.
  *
  * @author Max Clark
- *
- * Class that creates a surface view and draws a series of objects for user interaction.
+ * @version 10 February 2022
  */
 public class DrawClass extends SurfaceView{
 
@@ -28,7 +25,7 @@ public class DrawClass extends SurfaceView{
     Paint appSixPaint = new Paint();
     Paint phoneFramePaint = new Paint();
     Paint phoneBackgroundPaint = new Paint();
-    //Creates an instance of the model for DrawClass
+    //Creates a variable of the model for DrawClass
     private DrawClassModel drawings;
 
     /**
@@ -36,10 +33,14 @@ public class DrawClass extends SurfaceView{
      *
      * Constructor for DrawClass. Initializes the model for the DrawClass as well as
      * the different paints that are used for each object on the surface view
+     *
+     * @param context
+     * @param attrib
      */
     public DrawClass(Context context, AttributeSet attrib) {
         super(context, attrib);
 
+        //Creates new instance of the DrawClassModel
         drawings = new DrawClassModel();
 
         //Shows drawing on surface view
@@ -52,6 +53,8 @@ public class DrawClass extends SurfaceView{
      * onDraw
      *
      * Draws each object on the surface view.
+     *
+     * @param canvas Creates the canvas that the objects are drawn on.
      */
     @Override
     public void onDraw(Canvas canvas) {
@@ -68,10 +71,10 @@ public class DrawClass extends SurfaceView{
         appFivePaint.setColor(appFiveColor);
         int appSixColor = Color.rgb(drawings.a6Red, drawings.a6Green, drawings.a6Blue);
         appSixPaint.setColor(appSixColor);
-        int phoneFrameColor = Color.rgb(drawings.pFrameRed, drawings.pFrameGreen, drawings.pFrameBlue);
-        phoneFramePaint.setColor(phoneFrameColor);
-        int phoneBackgroundColor = Color.rgb(drawings.pBackgroundRed, drawings.pBackgroundGreen, drawings.pBackgroundBlue);
+        int phoneBackgroundColor = Color.rgb(drawings.pBackgroundRed, drawings.pBackgroundGreen,
+                drawings.pBackgroundBlue);
         phoneBackgroundPaint.setColor(phoneBackgroundColor);
+        phoneFramePaint.setColor(Color.GRAY);
 
         //Phone Frame
         canvas.drawRect(700.0f, 15.0f, 1300.0f, 735.0f,phoneFramePaint);
@@ -95,6 +98,8 @@ public class DrawClass extends SurfaceView{
      * getModel
      *
      * Gets model for DrawClass.
+     *
+     * @return     Returns the DrawClassModel that is used within this DrawClass.
      */
     public DrawClassModel getModel() {
         return drawings;
