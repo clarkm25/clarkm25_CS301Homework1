@@ -2,62 +2,102 @@ package com.example.cs301homework1;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 
+/**
+ * DrawClass
+ *
+ * @author Max Clark
+ *
+ * Class that creates a surface view and draws a series of objects for user interaction.
+ */
 public class DrawClass extends SurfaceView{
 
-    private int lightBlue = 0xFFADD8E6;
-    private PhoneFrame phoneFrame;
-    private PhoneBackground phoneBackground;
-    private App app1;
-    private App app2;
-    private App app3;
-    private App app4;
-    private App app5;
-    private App app6;
+    //Paints that will be used for the different objects on the surface view
+    int background = 0xFFADD8E6;
+    Paint appOnePaint = new Paint();
+    Paint appTwoPaint = new Paint();
+    Paint appThreePaint = new Paint();
+    Paint appFourPaint = new Paint();
+    Paint appFivePaint = new Paint();
+    Paint appSixPaint = new Paint();
+    Paint phoneFramePaint = new Paint();
+    Paint phoneBackgroundPaint = new Paint();
+    //Creates an instance of the model for DrawClass
+    private DrawClassModel drawings;
 
-    public DrawClass(Context context) {
-        super(context);
-        initialize();
-    }
-
+    /**
+     * DrawClass
+     *
+     * Constructor for DrawClass. Initializes the model for the DrawClass as well as
+     * the different paints that are used for each object on the surface view
+     */
     public DrawClass(Context context, AttributeSet attrib) {
         super(context, attrib);
-        initialize();
-    }
 
-    public void initialize() {
+        drawings = new DrawClassModel();
+
         //Shows drawing on surface view
         setWillNotDraw(false);
 
-        //this.setOnTouchListener(this);
-
-        this.setBackgroundColor(lightBlue);
-
-        phoneFrame = new PhoneFrame(700.0f, 15.0f, 1300.0f, 735.0f, 100,100,100);
-        phoneBackground = new PhoneBackground(725.0f,65.0f,1275.0f,685.0f,0,0,0);
-        app1 = new App(800.0f,95.0f,900.0f,195.0f,200,200,200);
-        app2 = new App(1100.0f,95.0f,1200.0f,195.0f,200,200,200);
-        app3 = new App(800.0f,295.0f,900.0f,395.0f,200,200,200);
-        app4 = new App(1100.0f,295.0f,1200.0f,395.0f,200,200,200);
-        app5 = new App(800.0f,515.0f,900.0f,615.0f,200,200,200);
-        app6 = new App(1100.0f,515.0f,1200.0f,615.0f,200,200,200);
-
+        this.setBackgroundColor(background);
     }
 
+    /**
+     * onDraw
+     *
+     * Draws each object on the surface view.
+     */
     @Override
     public void onDraw(Canvas canvas) {
-        phoneFrame.drawPhoneFrame(canvas);
-        phoneBackground.drawPhoneBackground(canvas);
-        app1.drawApp(canvas);
-        app2.drawApp(canvas);
-        app3.drawApp(canvas);
-        app4.drawApp(canvas);
-        app5.drawApp(canvas);
-        app6.drawApp(canvas);
+        //Initializes paints using RGB values found from the model class
+        int appOneColor = Color.rgb(drawings.a1Red, drawings.a1Green, drawings.a1Blue);
+        appOnePaint.setColor(appOneColor);
+        int appTwoColor = Color.rgb(drawings.a2Red, drawings.a2Green, drawings.a2Blue);
+        appTwoPaint.setColor(appTwoColor);
+        int appThreeColor = Color.rgb(drawings.a3Red, drawings.a3Green, drawings.a3Blue);
+        appThreePaint.setColor(appThreeColor);
+        int appFourColor = Color.rgb(drawings.a4Red, drawings.a4Green, drawings.a4Blue);
+        appFourPaint.setColor(appFourColor);
+        int appFiveColor = Color.rgb(drawings.a5Red, drawings.a5Green, drawings.a5Blue);
+        appFivePaint.setColor(appFiveColor);
+        int appSixColor = Color.rgb(drawings.a6Red, drawings.a6Green, drawings.a6Blue);
+        appSixPaint.setColor(appSixColor);
+        int phoneFrameColor = Color.rgb(drawings.pFrameRed, drawings.pFrameGreen, drawings.pFrameBlue);
+        phoneFramePaint.setColor(phoneFrameColor);
+        int phoneBackgroundColor = Color.rgb(drawings.pBackgroundRed, drawings.pBackgroundGreen, drawings.pBackgroundBlue);
+        phoneBackgroundPaint.setColor(phoneBackgroundColor);
+
+        //Phone Frame
+        canvas.drawRect(700.0f, 15.0f, 1300.0f, 735.0f,phoneFramePaint);
+        //Phone Background
+        canvas.drawRect(725.0f,65.0f,1275.0f,685.0f,phoneBackgroundPaint);
+        //App 1
+        canvas.drawRect(800.0f,95.0f,900.0f,195.0f,appOnePaint);
+        //App 2
+        canvas.drawRect(1100.0f,95.0f,1200.0f,195.0f,appTwoPaint);
+        //App 3
+        canvas.drawRect(800.0f,295.0f,900.0f,395.0f,appThreePaint);
+        //App 4
+        canvas.drawRect(1100.0f,295.0f,1200.0f,395.0f,appFourPaint);
+        //App 5
+        canvas.drawRect(800.0f,515.0f,900.0f,615.0f,appFivePaint);
+        //App 6
+        canvas.drawRect(1100.0f,515.0f,1200.0f,615.0f,appSixPaint);
+    }
+
+    /**
+     * getModel
+     *
+     * Gets model for DrawClass.
+     */
+    public DrawClassModel getModel() {
+        return drawings;
     }
 }
 

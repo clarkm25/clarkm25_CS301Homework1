@@ -3,38 +3,47 @@ package com.example.cs301homework1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+/**
+ * MainActivity
+ *
+ * @author Max Clark
+ *
+ * Class that creates ...
+ */
 public class MainActivity extends AppCompatActivity {
+    private DrawClass drawings;
+    private View touchedDrawing;
+    private SeekBar redSeek;
+    private SeekBar greenSeek;
+    private SeekBar blueSeek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        //Create and register red seekbar
+        TextView drawingText = findViewById(R.id.title);
         TextView redValue = findViewById(R.id.redValue);
-        SeekBar.OnSeekBarChangeListener redBarListener = new UpdateRedValue(redValue);
-        SeekBar redSeekBar = findViewById(R.id.redBar);
-
-        //Create and register green seekbar
         TextView greenValue = findViewById(R.id.greenValue);
-        SeekBar.OnSeekBarChangeListener greenBarListener = new UpdateRedValue(greenValue);
-        SeekBar greenSeekBar = findViewById(R.id.greenBar);
-
-        //Create and register blue seekbar
         TextView blueValue = findViewById(R.id.blueValue);
-        SeekBar.OnSeekBarChangeListener blueBarListener = new UpdateRedValue(blueValue);
-        SeekBar blueSeekBar = findViewById(R.id.blueBar);
 
-        //Set values to change based on seekbar location
-        redSeekBar.setOnSeekBarChangeListener(redBarListener);
-        greenSeekBar.setOnSeekBarChangeListener(greenBarListener);
-        blueSeekBar.setOnSeekBarChangeListener(blueBarListener);
+        redSeek = findViewById(R.id.redBar);
+        greenSeek = findViewById(R.id.greenBar);
+        blueSeek = findViewById(R.id.blueBar);
 
+        drawings = findViewById(R.id.drawClass);
+        DrawClassController newDrawing = new DrawClassController(drawingText, redValue, greenValue,
+                blueValue, drawings, redSeek, greenSeek, blueSeek);
 
+        touchedDrawing = findViewById(R.id.drawClass);
+        touchedDrawing.setOnTouchListener(newDrawing);
 
+        redSeek.setOnSeekBarChangeListener(newDrawing);
+        greenSeek.setOnSeekBarChangeListener(newDrawing);
+        blueSeek.setOnSeekBarChangeListener(newDrawing);
     }
 }
