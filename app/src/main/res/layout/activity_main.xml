@@ -33,11 +33,11 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <com.example.cs301homework1.DrawClass
+            <com.example.clarkm25_cs301homework1.DrawClass
                 android:id="@+id/drawClass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" ></com.example.cs301homework1.DrawClass>
+                android:layout_weight="1" ></com.example.clarkm25_cs301homework1.DrawClass>
 
         </LinearLayout>
 

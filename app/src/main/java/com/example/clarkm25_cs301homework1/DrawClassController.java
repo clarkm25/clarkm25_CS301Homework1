@@ -1,4 +1,4 @@
-package com.example.cs301homework1;
+package com.example.clarkm25_cs301homework1;
 
 import android.view.MotionEvent;
 import android.view.View;
